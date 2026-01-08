@@ -1,0 +1,30 @@
+body {
+  background-color: #ffffff;
+  color: #212529;
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+}
+button {
+  padding: 5px 20px;
+  background-color: #0d6efd;
+  border-style: none;
+  color: #ffffff;
+  border-radius: 5px;
+}
+input {
+  height: 25px;
+}
+#caveat p {
+  color: red;         /* 文字色を赤に */
+  font-size: 0.7em;   /* 少し小さめ */
+  margin-top: 2px;    /* inputに近づける */
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+button:hover{
+  background-color: #0b5ed7;
+}
+button:active{
+  background-color: #0a58ca;
+}
