@@ -1,49 +1,69 @@
 'use strict';
 
-const usernameInput    = document.getElementById('user-name');
+const usernameInput = document.getElementById('user-name');
 const assessmentButton = document.getElementById('assessment');
-const resultDivision   = document.getElementById('result-area');
-const postDivision     = document.getElementById('post-area');
-const caveat           = document.getElementById('caveat') 
+const resultDivided = document.getElementById('result-area');
+const postDivision = document.getElementById('post-area');
+const caveat = document.getElementById('caveat')
 
-assessmentButton.onclick = function() {
+assessmentButton.onclick = function () {
   const username = usernameInput.value;
-  if (username.length === 0){
+  if (username.length === 0) {
     caveat.innerText = '';
-    const caveatgoogle = document.createElement('p');
+    const caveatgoogle = document.createElement('div');
     caveatgoogle.innerText = '名前を入力してください';
+    caveatgoogle.classList.add(
+      'text-danger',   // 赤文字
+      'small',         // 文字を小さく
+      'mt-1'           // inputとの距離を近づける
+    );
     caveat.appendChild(caveatgoogle);
+
     return; //名前がない場合処理を終了する
   }
 
-//表示の前にdiv内を空にするコード
+  //表示の前にdiv内を空にするコード
 
-resultDivision.innerText = '';
+  resultDivided.innerText = '';
 
-//診断表示結果エリアの作成
-caveat.innerText = '';
-const header = document.createElement('h3'); //h3タグを作成
-header.innerText = '診断結果'; //中身の文章を設定
-resultDivision.appendChild(header);//divの子要素として追加
+  // headerDividedの作成
+  const headerDvided = document.createElement('div');
+  headerDvided.setAttribute('class', 'card-header');
+  headerDvided.innerText = '診断結果';
 
-const paragraph = document.createElement('p');
-const result = assessment(username);
-paragraph.innerText = result; //結果の文章をpタグに入れるよう設定
-resultDivision.appendChild(paragraph); //pタグに文章を入れる
+  // bodyDividedの作成
+  const bodyDvided = document.createElement('div');
+  bodyDvided.setAttribute('class', 'card-body');
 
-//ポストエリアの作成
-const anchor = document.createElement('a');
-postDivision.innerText = '';
-const hrefvalue = `https://twitter.com/intent/tweet?button_hashtag=${encodeURIComponent('あなたのいいところ診断')}&ref_src=twsrc%5Etfw`;
-anchor.setAttribute('href', hrefvalue);
-anchor.setAttribute('class', 'twitter-hashtag-button');
-anchor.setAttribute('data-Text', result);
-anchor.innerText = 'ポスト #あなたのいいところ' ;
-postDivision.appendChild(anchor);
+  const paragraph = document.createElement('p');
+  paragraph.setAttribute('class', 'card-text');
 
-const script = document.createElement('script');
-script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
-postDivision.appendChild(script);
+  const result = assessment(username);
+  paragraph.innerText = result;
+
+  bodyDvided.appendChild(paragraph);
+
+  //resultdividedにBootStrapのスタイルを適用
+  resultDivided.setAttribute('class', 'card');
+  resultDivided.setAttribute('style', 'max-width: 700px');
+
+  //headerDividedとbodyDvidedをresultDvidedに挿入
+  resultDivided.appendChild(headerDvided);
+  resultDivided.appendChild(bodyDvided);
+
+  //ポストエリアの作成
+  const anchor = document.createElement('a');
+  postDivision.innerText = '';
+  const hrefvalue = `https://twitter.com/intent/tweet?button_hashtag=${encodeURIComponent('あなたのいいところ診断')}&ref_src=twsrc%5Etfw`;
+  anchor.setAttribute('href', hrefvalue);
+  anchor.setAttribute('class', 'twitter-hashtag-button');
+  anchor.setAttribute('data-Text', result);
+  anchor.innerText = 'ポスト #あなたのいいところ';
+  postDivision.appendChild(anchor);
+
+  const script = document.createElement('script');
+  script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+  postDivision.appendChild(script);
 }
 
 const answers = [
