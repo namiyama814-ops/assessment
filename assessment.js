@@ -83,6 +83,7 @@ const answers = [
   '###userName###さんのいいところは気配りです。###userName###さんの配慮が多くの人を救っています。',
   '###userName###さんのいいところはその全てです。ありのままの###userName###さん自身がいいところなのです。',
   '###userName###さんのいいところは自制心です。やばいと思ったときにしっかりと衝動を抑えられる###userName###さんが皆から評価されています。',
+  '###userName###のいいところは優しさです。あなたの優しい雰囲気や立ち振る舞いに多くの人が癒やされています。',
 ];
 
 /**
@@ -107,4 +108,5 @@ function assessment(username) {
 usernameInput.onkeydown = event => {
   if (event.key === 'Enter')
     assessmentButton.onclick();
+
 }
